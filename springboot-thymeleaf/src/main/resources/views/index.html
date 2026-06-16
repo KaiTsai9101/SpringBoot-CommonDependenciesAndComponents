@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf模板文件</title>
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>-->
+<!--    <script type="text/javascript" th:src="@{/js/index.js}"></script>-->
+</head>
+<body>
+<!--    <h1>Hello, Thymeleaf!</h1>-->
+<!--    <img th:src="@{/img/desktop.jpg}" width="50%" height="50%" />-->
+<!--    <p th:text="${user}"></p>-->
+<!--    <p th:utext="${user}"></p>-->
+
+<!--userName=<p th:text="${user.userName}"></p>-->
+<!--userPass=<p th:text="${user.userPass}"></p>-->
+<!--userName=<p th:text="*{user.userName}"></p>-->
+<!--userPass=<p th:text="*{user.userPass}"></p>-->
+
+<!--<div th:object="${user}">-->
+<!--    userName2=<p th:text="*{userName}"></p>-->
+<!--    userName2=<p th:text="*{userPass}"></p>-->
+<!--</div>-->
+
+<!--<p th:if="${age>=18}">成年了</p>-->
+<!--<p th:unless="${age>=18}">未成年</p>-->
+
+<!--<div th:switch="${age}">-->
+<!--    <p th:case="16">花季</p>-->
+<!--    <p th:case="17">雨季</p>-->
+<!--</div>-->
+
+<table border="1", width="45%">
+    <tr>
+        <td>用户名</td>
+    </tr>
+    <tr th:each="user:${userList}">
+        <td th:text="${user.userName}"></td>
+    </tr>
+</table>
+</body>
+</html>
