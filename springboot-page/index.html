@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>分页</title>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css"/>
+        <script src="https://unpkg.com/element-plus"></script>
+    </head>
+
+    <body>
+        <div id="app"> 
+            <div style="width: 80%; margin: 0px auto;">
+                <el-table stripe :data="roleList">
+                    <el-table-column label="ID" prop="roleId" width="100"></el-table-column>
+                    <el-table-column label="角色名" prop="roleName"></el-table-column>
+                    <el-table-column label="角色字符串" prop="roleStr"></el-table-column>
+                    <el-table-column label="创建人" prop="createBy"></el-table-column>
+                    <el-table-column label="创建时间" prop="createTime"></el-table-column>
+                    <el-table-column label="备注信息" prop="remark"></el-table-column>
+                </el-table>
+                <el-pagination
+                    :total="total"
+                    :current-page="currentPage"
+                    :page-size="pageSize"
+                    :page-sizes="[3,5,10,20]"
+                    background
+                    layout="->,sizes, prev, pager, next, jumper"
+                    @current-change="handleCurrentChange"
+                    @size-change="handleSizeChange"
+                ></el-pagination>
+            </div>
+        </div>
+        <script>
+            const appConfig = {
+                data() {
+                    return {
+                        roleList:[],
+                        currentPage: 1,
+                        pageSize: 5,
+                        total: 0
+                    };
+                },
+                methods: {
+                    initData() {
+                        let url = "http://localhost:8080/roleList";
+                        axios.get(url,{params: {currentPage: this.currentPage, pageSize: this.pageSize}})
+                        .then(res => {
+                            if(res.data.code == 200){
+                                this.roleList = res.data.data.records;
+                                this.total = res.data.data.total;
+                            }
+                        });
+                    },
+                    handleCurrentChange(curPage) {
+                        this.currentPage = curPage;
+                        this.initData();
+                    },
+                    handleSizeChange(curSize) {
+                        this.pageSize = curSize;
+                        this.initData();
+                    },
+                },
+                created() {
+                    this.initData();
+                },
+            };
+            const app = Vue.createApp(appConfig);   // 创建vue实例
+            app.use(ElementPlus);   // 注册ElementPlus
+            app.mount("#app");  // 渲染
+        </script>
+    </body>
+</html>
