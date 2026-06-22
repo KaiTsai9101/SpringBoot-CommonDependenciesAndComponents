@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css"/>
+    <style>
+        .myImg {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <el-upload
+                action="http://localhost:8080/upload"
+                :show-file-list="false"
+                accept=".jpg, .png, .gif"
+                :before-upload="handleUpload"
+                :on-success="handleSuccess"
+        >
+            <img :src="imageSrc" class="myImg"/>
+        </el-upload>
+    </div>
+    <script>
+        const appConfig = {
+            data() {
+                return {
+                    imageSrc: '',
+                    imageType:["image/jpeg", "image/png", "image/gif"]
+                };
+            },
+            methods: {
+                initPhoto() {
+                    this.imageSrc = 'http://localhost:8080/userPhoto';
+                },
+                handleUpload(file) {
+                    // 文件类型只支持 jpg, png, gif
+                    let r1 = this.imageType.includes(file.type);
+                    if (!r1) {
+                        this.$message.error("仅支持 .jpg, .png, .gif 的图片格式");
+                    }
+                    // 文件大小
+                    let r2 = file.size / 1024 / 1024 < 5;
+                    if (!r2) {
+                        this.$message.error("图片大小不能超过 5MB");
+                    }
+                    return r1 && r2;
+                },
+                handleSuccess (response, file) {
+                    // 图片回显
+                    this.imageSrc = URL.createObjectURL(file.raw);
+                }
+            },
+            created() {
+                this.initPhoto();
+            },
+        };
+        const app = Vue.createApp(appConfig);
+        app.use(ElementPlus);
+        app.mount("#app");
+    </script>
+</body>
+</html>
