@@ -1,11 +1,12 @@
+# 数据库配置(需要在运行-编辑配置-环境变量或者在windows环境变量中配置数据库变量（JASYPT_ENCRYPTOR_PASSWORD）与值（密钥）)
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bbs?serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: ENC(DO4h3Ocy7vHgRH59l6tdcneS1G0KAtstdFoDVqahpN6RawXGp2Dl40LRtNlb02y3)
     druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/bbs?serverTimezone=Asia/Shanghai
-      username: root
-      password: ENC(ll8ENg2XISbMP5jFjbN/0513YLBp73T4tdjVgdMDX8CAsY3fTGiUeC0WCJ0cUvZm)
 # jasypt配置
 jasypt:
   encryptor:

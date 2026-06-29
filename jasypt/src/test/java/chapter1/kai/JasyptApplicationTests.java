@@ -46,7 +46,7 @@ class JasyptApplicationTests {
     public void test3() {
         // 获取数据库密码
         Environment env = applicationContext.getEnvironment();
-        String password = env.getProperty("spring.datasource.druid.password");
+        String password = env.getProperty("spring.datasource.password");
         System.out.println("数据库密码: " + password);
     }
 }
