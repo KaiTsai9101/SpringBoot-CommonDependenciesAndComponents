@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/bbs?serverTimezone=Asia/Shanghai
+      username: root
+      password: ENC(ll8ENg2XISbMP5jFjbN/0513YLBp73T4tdjVgdMDX8CAsY3fTGiUeC0WCJ0cUvZm)
+# jasypt配置
+jasypt:
+  encryptor:
+    # 解密所需的密钥，这个值不能公开
+    password: ${JASYPT_ENCRYPTOR_PASSWORD}
