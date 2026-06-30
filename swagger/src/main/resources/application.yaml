@@ -1,0 +1,13 @@
+springdoc:
+  api-docs:
+    # 启用 OpenAPI JSON端点（默认启用）
+    # 开发环境下可以启用，生产环境下建议禁用（以免暴露 API 文档）
+    enabled: true
+    # OpenAPI JSON端点路径（默认 /v3/api-docs）
+    path: /v3/api-docs
+  swagger-ui:
+    # 启用 Swagger UI（默认启用）
+    # 开发环境下可以启用，生产环境下建议禁用（以免暴露 API 文档）
+    enabled: true
+    # Swagger UI访问路径（默认 /swagger-ui.html）
+    path: /swagger-ui.html
