@@ -1,0 +1,36 @@
+springdoc:
+  # Api文档分组配置
+  group-configs:
+    - group: 'departments'
+      # 匹配部门相关接口
+      paths-to-match: '/api/departments/**'
+    - group: 'employees'
+      # 匹配员工相关接口
+      paths-to-match: '/api/employees/**'
+knife4j:
+  # 启用 Knife4j 增强模式（默认 false）
+  enable: true
+  # Http 验证
+  basic:
+    # 是否开启 Http 验证（默认 false）
+    enable: true
+    # 用户名
+    username: 'admin'
+    # 密码
+    password: '123456'
+  # 个性化设置
+  setting:
+    # Ui默认语言：中文ZH-CN（默认），英文 EN
+    language: ZH_CN
+    # 是否开启自定义Footer（默认 false）
+    enable-footer-custom: true
+    # 自定义Footer内容
+    footer-custom-content: KaiTsai
+    # Swagger-model 的名字
+    swagger-model-name: 实体类列表
+    # 是否显示服务分组（默认 true）
+    enable-group: false
+    # 是否显示搜索框（默认 true）
+    enable-search: false
+  # 生产环境配置，开启后隐藏敏感信息，避免接口信息泄露（默认 false）
+  production: false
